@@ -6,11 +6,11 @@ class TradingMasteryApp extends StatelessWidget {
   const TradingMasteryApp({super.key});
   @override
   Widget build(BuildContext context) => MaterialApp(
-    debugShowCheckedModeBanner: false,
-    title: 'إحتراف التداول من الصفر الى الاحترف',
-    theme: ThemeData(useMaterial3: true, brightness: Brightness.dark, fontFamily: 'Arial'),
-    home: const HomePage(),
-  );
+        debugShowCheckedModeBanner: false,
+        title: 'إحتراف التداول من الصفر الى الاحترف',
+        theme: ThemeData(useMaterial3: true, brightness: Brightness.dark, fontFamily: 'Arial'),
+        home: const HomePage(),
+      );
 }
 
 class Lesson {
@@ -94,46 +94,38 @@ const lessons = [
     'نسبة المخاطرة إلى العائد مثل 1:2 مثال حسابي، وليست ضماناً للربح.',
     'تدرب على Long Position وShort Position في TradingView وعلى حسابات افتراضية قبل المخاطرة بالمال.',
   ]),
-  Lesson('المحاضرة 10 — أخطاء المتداولين وعقلية التداول','أخطاء التفكير وإدارة رأس المال والخطة والانضباط التي تكررها المحاضرة عند المتداولين.',[
-    'الثراء السريع: توقع تحقيق مبالغ كبيرة بسرعة قد يدفع المتداول إلى لوتات كبيرة ويكسر إدارة المخاطر.',
-    'الهدف الأفضل هو الاستمرار على المدى الطويل والتداول بإدارة مخاطر منضبطة، لا مطاردة الثراء السريع.',
-    'لا تتوقع سلسلة مكاسب بلا خسائر؛ الخسارة جزء من التداول، وتقييم النتائج يكون على مجموعة صفقات وفترات مناسبة.',
-    'لا تغيّر الطريقة بعد خسارتين أو ثلاث تلقائياً؛ لكل طريقة نسبة فشل ونجاح ويجب اختبارها وفهم أسباب الدخول والخروج.',
-    'لا تقلد شخصاً أو قناة بسبب ادعاء نسبة نجاح مرتفعة؛ تعلم سبب الدخول وسبب الخروج أولاً.',
-    'لا تجعل نسبة المخاطرة لكل صفقة تتغير بسبب إغراء الصفقة أو الخسائر السابقة؛ المحاضر يؤكد ثبات مبلغ/نسبة المخاطرة.',
-    'استخدم Stop Loss منطقياً ولا تحركه بعيداً لمجرد تجنب الاعتراف بالخسارة.',
-    'التداول بدون خطة يجعل القرار مبنياً على التخمين: صعد كثيراً إذن سيهبط، أو هبط كثيراً إذن سيصعد.',
-    'الخطة تحتاج إلى فريم محدد، شروط دخول، اتجاه/دعم ومقاومة، شروط خروج، وأوقات يمنع فيها التداول وفق النظام.',
-    'لا تغيّر المدرسة أو الطريقة كل يوم؛ اختر طريقة، اختبرها بجدية، وسجل نتائجها قبل الحكم عليها.',
-    'تجنب الدخول العشوائي وقت الأخبار القوية ما لم تكن لديك خطة مجربة ومكتوبة للتعامل معها.',
-    'استخدم Trading Journal وسجل الأصل، نوع الصفقة، سبب الدخول، Stop Loss، Take Profit، النتيجة والملاحظات.',
-    'راجع الصفقات أسبوعياً أو دورياً لاكتشاف الأخطاء المتكررة وتحسين الالتزام.',
-    'لا تتداول وأنت متعب أو مريض أو غاضب أو شديد الانفعال، أو عندما تكون ظروف الهاتف/الإنترنت غير مناسبة للمتابعة.',
-    'لا تحاول ركوب كل حركة في السوق؛ عدم وجود صفقة أفضل من صفقة بلا شروط.',
+  Lesson('المحاضرة 10 — أخطاء المتداولين وعقلية التداول','أخطاء التفكير وإدارة رأس المال والخطة والانضباط.',[
+    'من الأخطاء: توقع الثراء السريع، انتظار سلسلة أرباح بلا خسائر، واتباع إشارات أشخاص يدّعون نجاحاً شبه مضمون.',
+    'المخاطرة ينبغي أن تكون مبلغاً أو نسبة محددة مسبقاً، وليس لوتاً ثابتاً لكل الحسابات.',
+    'لا تزيل وقف الخسارة أو تحوله إلى خسارة ضخمة لمجرد تجنب الاعتراف بالخسارة.',
+    'خطة التداول تشمل شروط الدخول والخروج والإطار الزمني ومتى يمنع التداول.',
+    'لا تنتقل بين الاستراتيجيات بسرعة؛ اختبر طريقة واحدة تاريخياً أو على حساب تجريبي قبل الحكم عليها.',
+    'الأخبار القوية قد تسبب حركة عنيفة؛ المبتدئ يتجنبها ما لم تكن لديه طريقة مختبرة.',
+    'سجل الصفقات والمراجعة الأسبوعية يساعدان على اكتشاف الأخطاء المتكررة.',
+    'لا تتداول عند التعب أو المرض أو الغضب أو ضعف التركيز أو مشاكل الإنترنت والهاتف.',
   ]),
-  Lesson('المحاضرة 11 — الأخطاء النفسية والتطبيق العملي','الطمع والخوف والانتقام والتعلق بالصفقة، ثم تطبيق ما سبق على الشارت مع أهداف ووقف خسارة.',[
-    'هذه المحاضرة تكمل أخطاء المتداولين وتركز على الأخطاء النفسية: الطمع، الخوف، الانتقام من السوق، والتعلق الزائد بالصفقات.',
-    'الطمع يظهر مثلاً عند حذف الهدف بعد وصول السعر إليه أملاً في المزيد، أو زيادة عدد الصفقات بعد سلسلة أرباح حتى تضيع أرباح الفترة.',
-    'قاعدة أساسية من المحاضرة: ليس مطلوباً أن تركب كل حركة في السوق؛ تفويت حركة لا يعني أنك أخطأت.',
-    'الخوف الزائد قد يمنع تنفيذ فرصة مكتملة الشروط، أو يؤدي إلى إغلاق الصفقة مبكراً رغم وجود الخطة.',
-    'الإغلاق المبكر قد يفسد نسبة المخاطرة إلى العائد، خصوصاً عندما تصبح الأرباح الصغيرة غير كافية لتعويض الخسائر.',
-    'تقليل حجم المخاطرة إلى مستوى مقبول نفسياً يساعد على الالتزام بالخطة بدلاً من الخروج بسبب الخوف.',
-    'الالتزام بالطريقة فترة كافية يساعد على بناء الثقة بالنظام من خلال النتائج، وليس من خلال صفقة واحدة.',
-    'الانتقام من السوق يعني رفع اللوت أو زيادة المخاطرة بعد خسارة بهدف تعويضها بسرعة. المحاضرة تحذر منه بشدة.',
-    'قاعدة عملية اقترحها المحاضر: ضع حداً مكتوباً للخسارة اليومية، مثل التوقف بعد خسارة 3% في المثال الذي شرحه، مع كون الرقم مثالاً تعليمياً من المصدر.',
-    'التعلق الزائد بالصفقة يجعل المتداول يراقب صفقة واحدة طوال اليوم ويهمل بقية الفرص والخطة.',
-    'إذا أصبحت صفقة ما تستهلكك نفسياً، فالمحاضر يطرح الخروج منها كخيار بدلاً من تركها تتحكم في قراراتك.',
-    'في التطبيق على الشارت: حدد الاتجاه، القمم والقيعان، الدعم والمقاومة، النموذج إن وجد، ثم حدد الهدف ووقف الخسارة وفق الخطة.',
-    'في المثال التطبيقي على الأسهم، استخدم المحاضر مناطق الدعم السابقة كأماكن محتملة للأهداف بدلاً من الاعتماد على رقم عشوائي.',
-    'في الاتجاه الهابط، كسر القمة ثم إعادة الاختبار يمكن أن يعطي فرصة تعليمية وفق منهج المحاضر، مع تحديد الوقف والهدف قبل التنفيذ.',
-    'في الاتجاهات والنماذج، الدعم أو المقاومة المكسورة قد تتبادل الأدوار، وإعادة الاختبار يمكن أن تكون جزءاً من القراءة.',
-    'المثلث الهابط الانعكاسي عُرض كمثال: قمم أقل، قيعان على مستوى متقارب، ثم كسر للأسفل، مع استخدام الدعوم التالية كأهداف محتملة في الشرح.',
-    'المحاضر يوضح أن إغلاق نصف العقد عند تحقيق جزء من الهدف ثم نقل وقف الجزء المتبقي إلى نقطة التعادل يمكن أن يكون أسلوباً تعليمياً، وسيتم تفصيله لاحقاً في المصدر.',
-    'لا تحرك Stop Loss لمجرد الخوف من ضربه؛ الخطة والقراءة هي التي تحدد مكانه، وليس مقدار المال الذي تريد ألا تخسره بعد الدخول.',
-    'التطبيق العملي يحتاج إلى تكرار على رسوم تاريخية؛ سهولة فهم الشرح لا تعني أن قراءة الشارت ستكون سهلة من أول محاولة.',
-    'قارن تطورك بنفسك: معلوماتك اليوم مقابل أمس، وخبرتك اليوم مقابل أمس، ولا تقارن نفسك بمتداول لديه سنوات طويلة من الخبرة.',
-    'المحاضرة تشير إلى موضوعات لاحقة مثل Fibonacci وترابط الفريمات والسيولة وSMC وبعض التطبيقات المتقدمة؛ لا نعتبرها مشروحة بالكامل هنا قبل ورود مصدرها.',
-    'تنبيه تعليمي: الأمثلة على الأسهم والسلع والفوركس في المحاضرة ليست توصيات شراء أو بيع ولا ضماناً للنتائج.',
+  Lesson('المحاضرة 11 — الأخطاء النفسية والتطبيق العملي','الجشع والخوف والانتقام والتعلق بالصفقة مع تطبيقات عملية على الشارت.',[
+    'الجشع قد يظهر بإلغاء الهدف بعد وصول السعر إليه أملاً في ربح أكبر، أو الإفراط في التداول بعد يوم رابح.',
+    'الخوف قد يؤدي إلى إغلاق الصفقة مبكراً أو عدم تنفيذ فرصة مطابقة للنظام المختبر.',
+    'التداول الانتقامي يحدث عندما تزيد حجم الصفقة بعد خسارة بهدف تعويضها عاطفياً.',
+    'التعلق المفرط بصفقة واحدة قد يجعلها تتحكم في المزاج والتركيز؛ كل صفقة جزء من سلسلة وليست النتيجة كلها.',
+    'من أمثلة الشرح: يمكن أن تدخل إدارة الخروج الجزئي وتحريك الوقف لنقطة التعادل ضمن خطة مسبقة.',
+    'الكسر الكاذب ممكن، وإغلاق شمعة الإطار نفسه قد يكون جزءاً من التأكيد لكنه ليس ضماناً.',
+    'تطبيقات Apple والنفط وغيرها في المحاضرة أمثلة لقراءة الشارت وليست توصيات تداول مباشرة.',
+    'قاعدة مهمة من المصدر: ليست كل حركة في السوق بحاجة إلى أن تدخل فيها.',
+    'قارن تطورك بنفسك وبمستواك السابق، وكرر التدريب على الشارت.',
+  ]),
+  Lesson('المحاضرة 12 — توافق الفريمات والإطار الزمني','فهم الفريم، الفرق بين التحليل على فريم واحد أو أكثر، وكيفية ربط الفريم الكبير بالصغير وفق الجزء المرسل.',[
+    'الفريم هو الإطار الزمني الذي يحدد الفترة التي تمثلها كل شمعة على الرسم.',
+    'على فريم 5 دقائق، كل شمعة تعبّر عن حركة السعر خلال 5 دقائق؛ وعلى فريم الساعة تعبّر الشمعة عن حركة ساعة كاملة.',
+    'الفريمات تشمل الدقيقة و5 دقائق و15 دقيقة والساعة و4 ساعات واليومي والأسبوعي وغيرها.',
+    'كلما كبر الفريم تقل الضوضاء والعشوائية الظاهرة عادةً، ويصبح الرسم أوضح، لكن الصفقة قد تحتاج وقتاً أطول للوصول إلى الهدف أو وقف الخسارة.',
+    'الفريم الأكبر قد يعني مسافة أكبر للهدف ووقف الخسارة وحاجة أكبر لرأس المال بحسب طريقة التداول.',
+    'لا يوجد فريم واحد هو الأفضل للجميع؛ اختيار الفريم يعتمد على أسلوب المتداول وما يناسبه بعد التعلم والتجربة.',
+    'التحليل على فريم واحد ليس خطأ. ويمكن ربط فريمين أو أكثر، لكن كثرة الفريمات قد تسبب التشتت للمبتدئ.',
+    'الفكرة الأساسية في توافق الفريمات هي ربط صورة الفريم الكبير بصورة الفريم الأصغر لزيادة دقة التحليل، وسيتم تفصيل ما يؤخذ من كل فريم في بقية المحاضرة.',
+    'المحاضر ذكر أن بعض المفاهيم المتقدمة مثل Daily Bias وLiquidity Sweep وManipulation وغيرها مؤجلة للمستقبل، لذلك لا نعتبرها مشروحة هنا.',
+    'الفرق بين التداول والاستثمار ذُكر في المحاضرة كموضوع مختلف، لكن تفاصيله غير موجودة في الجزء المرسل؛ لذلك لا نضيف تعريفات غير مذكورة.',
   ]),
 ];
 
@@ -141,43 +133,45 @@ class HomePage extends StatelessWidget {
   const HomePage({super.key});
   @override
   Widget build(BuildContext context) => Directionality(
-    textDirection: TextDirection.rtl,
-    child: Scaffold(
-      appBar: AppBar(title: const Text('إحتراف التداول من الصفر الى الاحترف')),
-      body: ListView.builder(
-        padding: const EdgeInsets.all(12),
-        itemCount: lessons.length,
-        itemBuilder: (context, index) {
-          final lesson = lessons[index];
-          return Card(
-            margin: const EdgeInsets.only(bottom: 10),
-            child: ListTile(
-              contentPadding: const EdgeInsets.all(14),
-              leading: CircleAvatar(child: Text('${index + 1}')),
-              title: Text(lesson.title, style: const TextStyle(fontWeight: FontWeight.bold)),
-              subtitle: Padding(
-                padding: const EdgeInsets.only(top: 6),
-                child: Text(lesson.summary),
+        textDirection: TextDirection.rtl,
+        child: Scaffold(
+          appBar: AppBar(title: const Text('إحتراف التداول من الصفر الى الاحترف'), centerTitle: true),
+          body: ListView(
+            padding: const EdgeInsets.all(16),
+            children: [
+              Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(24),
+                  gradient: const LinearGradient(colors: [Color(0xFF132B2B), Color(0xFF101722)]),
+                  border: Border.all(color: Colors.white12),
+                ),
+                child: const Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text('📚 مسار التعلم', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                  SizedBox(height: 8),
+                  Text('14 محاضرة — نتقدم خطوة بخطوة من الأساسيات إلى المفاهيم المتقدمة.', style: TextStyle(color: Colors.white70)),
+                ]),
               ),
-              trailing: const Icon(Icons.arrow_back_ios_new),
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => LessonPage(lesson: lesson)),
-              ),
-            ),
-          );
-        },
-      ),
-      bottomNavigationBar: const Padding(
-        padding: EdgeInsets.fromLTRB(16, 4, 16, 12),
-        child: Text(
-          'المحتوى تعليمي فقط. لا توجد ضمانات للربح، ولا يُعد توصية مالية شخصية.',
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.white60, fontSize: 12),
+              const SizedBox(height: 18),
+              for (var i = 0; i < lessons.length; i++)
+                Card(
+                  margin: const EdgeInsets.only(bottom: 12),
+                  color: const Color(0xFF111722),
+                  child: ListTile(
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+                    leading: CircleAvatar(child: Text('${i + 1}')),
+                    title: Text(lessons[i].title, style: const TextStyle(fontWeight: FontWeight.bold)),
+                    subtitle: Padding(padding: const EdgeInsets.only(top: 6), child: Text(lessons[i].summary, maxLines: 2, overflow: TextOverflow.ellipsis)),
+                    trailing: const Icon(Icons.arrow_back_ios_new, size: 18),
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => LessonPage(lesson: lessons[i]))),
+                  ),
+                ),
+              const SizedBox(height: 8),
+              const Text('تنبيه تعليمي: المحتوى يلخص المحاضرات المرسلة فقط، وليس توصية مالية أو ضماناً للربح.', textAlign: TextAlign.center, style: TextStyle(color: Colors.white54, fontSize: 12)),
+            ],
+          ),
         ),
-      ),
-    ),
-  );
+      );
 }
 
 class LessonPage extends StatelessWidget {
@@ -185,35 +179,27 @@ class LessonPage extends StatelessWidget {
   const LessonPage({super.key, required this.lesson});
   @override
   Widget build(BuildContext context) => Directionality(
-    textDirection: TextDirection.rtl,
-    child: Scaffold(
-      appBar: AppBar(title: Text(lesson.title)),
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          Text(lesson.summary, style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
-          const SizedBox(height: 14),
-          ...lesson.points.asMap().entries.map((entry) => Card(
-            margin: const EdgeInsets.only(bottom: 10),
-            child: Padding(
-              padding: const EdgeInsets.all(14),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CircleAvatar(radius: 12, child: Text('${entry.key + 1}', style: const TextStyle(fontSize: 11))),
-                  const SizedBox(width: 10),
-                  Expanded(child: Text(entry.value, style: const TextStyle(fontSize: 15, height: 1.45))),
-                ],
-              ),
-            ),
-          )),
-          const SizedBox(height: 8),
-          const Text(
-            'ملاحظة: تم تلخيص المحاضرات من المادة المصدرية المقدمة، وأي نقطة لم تُشرح في المصدر لا نعتبرها قاعدة تداول مؤكدة.',
-            style: TextStyle(color: Colors.white60, fontSize: 12, height: 1.4),
+        textDirection: TextDirection.rtl,
+        child: Scaffold(
+          appBar: AppBar(title: Text(lesson.title)),
+          body: ListView(
+            padding: const EdgeInsets.all(18),
+            children: [
+              Text(lesson.summary, style: const TextStyle(fontSize: 17, color: Colors.white70)),
+              const SizedBox(height: 18),
+              for (var i = 0; i < lesson.points.length; i++)
+                Container(
+                  margin: const EdgeInsets.only(bottom: 10),
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(color: const Color(0xFF111722), borderRadius: BorderRadius.circular(16), border: Border.all(color: Colors.white10)),
+                  child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    CircleAvatar(radius: 13, child: Text('${i + 1}', style: const TextStyle(fontSize: 11))),
+                    const SizedBox(width: 12),
+                    Expanded(child: Text(lesson.points[i], style: const TextStyle(fontSize: 15, height: 1.5))),
+                  ]),
+                ),
+            ],
           ),
-        ],
-      ),
-    ),
-  );
+        ),
+      );
 }
