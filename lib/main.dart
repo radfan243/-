@@ -66,6 +66,30 @@ const lessons = [
     'التطبيق العملي على الرسوم والتدريب المتكرر يساعدان على رؤية القمم والقيعان والنماذج بوضوح أكبر مع الوقت.',
     'تنبيه المصدر: الأرقام المذكورة للمخاطرة والأهداف هنا من شرح المحاضر وليست قاعدة شخصية أو توصية مالية للمستخدم.',
   ]),
+  Lesson('المحاضرة 5 — المستطيل والرأس والكتفين','نماذج سعرية إضافية: Rectangle وTriple Top وTriple Bottom وHead & Shoulders وInverse Head & Shoulders.',[
+    'المحاضر يبدأ بتأكيد أن النماذج السعرية لها احتمالات نجاح وفشل، لذلك لا يوجد نموذج مضمون.',
+    'Rectangle (المستطيل): في شرح المحاضر يتكون من قمتين وقاعين عند مستويات متقاربة تقريباً، ويُنظر إلى اتجاهه السابق لتفسيره ضمن هذا المنهج.',
+    'إذا جاء المستطيل بعد اتجاه صاعد، يشرح المحاضر احتمال استمرار الصعود بعد كسر الحد العلوي. وإذا جاء بعد اتجاه هابط، يشرح احتمال استمرار الهبوط بعد كسر الحد السفلي.',
+    'Triple Top: نموذج انعكاسي هابط يشبه القمم المتعددة، بثلاث قمم تقريباً على مستوى متقارب، ويُدرس بعد اتجاه صاعد وفق شرح المحاضر.',
+    'Triple Bottom: نموذج انعكاسي صاعد بثلاثة قيعان تقريباً على مستوى متقارب، ويُدرس بعد اتجاه هابط وفق شرح المحاضر.',
+    'المحاضر يفرّق بين Rectangle والنماذج الثلاثية: المستطيل هنا أربع نقاط أساسية (قمتان وقاعان)، بينما Triple Top/Bottom ثلاث قمم أو ثلاث قيعان.',
+    'لا تفترض أن كل شكل مشابه هو مستطيل أو Triple Top/Bottom؛ يجب أن يكون السياق والشكل واضحين ولا يجوز إجبار الرسم على النموذج.',
+    'عند كسر مقاومة أو دعم ثم إعادة اختبار المنطقة، يشرح المحاضر مبدأ تبادل الأدوار: المقاومة قد تصبح دعماً والدعم قد يصبح مقاومة.',
+    'Head & Shoulders (الرأس والكتفين): نموذج انعكاسي سلبي شرحه المحاضر لتحويل اتجاه صاعد إلى هابط.',
+    'في Head & Shoulders يوجد كتف أيسر، رأس أعلى منه، وكتف أيمن، مع خط يمر بمناطق القيعان يسمى Neckline (خط العنق).',
+    'في النموذج القياسي الذي شرحه المحاضر، كسر خط العنق إلى الأسفل هو إشارة البيع التعليمية، مع عدم اعتبارها ضماناً.',
+    'فشل سيناريو البيع في الشرح يكون بعودة السعر وكسره القمة/الكتف المحدد الذي وضع عنده وقف الخسارة؛ يجب عدم تقديم ذلك كقاعدة مالية عامة.',
+    'الهدف النظري في Head & Shoulders الذي شرحه المحاضر يُقاس بمسافة الرأس عن خط العنق، ويُعامل كحد أدنى للمستهدف في شرحه.',
+    'Inverse Head & Shoulders (الرأس والكتفين المعكوس): نموذج انعكاسي إيجابي يحوّل الاتجاه الهابط إلى صاعد وفق شرح المحاضر.',
+    'في النموذج المعكوس يوجد كتف أيسر وقاع رأس أعمق ثم كتف أيمن، وخط العنق يكون عند القمم الفاصلة.',
+    'كسر خط العنق للأعلى هو إشارة الشراء التعليمية في شرح المحاضر، ووقف الخسارة يُشرح أسفل الكتف الأيمن ضمن المثال.',
+    'الهدف النظري للنموذج المعكوس يقاس بمسافة الرأس عن خط العنق ويُوصف في المحاضرة بأنه الحد الأدنى للمستهدف.',
+    'يمكن استخدام مناطق الدعم والمقاومة كأهداف أو نقاط مراقبة إضافية وفق شرح المحاضر، وليس كضمان لوصول السعر إليها.',
+    'منهج البحث عن النماذج: اختر أصلاً أو فريماً، حدّد الاتجاه أولاً، ثم ابحث عن نموذج واضح يطابق القواعد، ودرّب العين على أمثلة تاريخية.',
+    'إذا كان الرسم عرضياً أو الشكل غير واضح، لا تحاول تسمية النموذج بالقوة؛ المحاضر يفضّل انتظار حالة أوضح وعدم التداول ضمن هذا المنهج.',
+    'المحاضرة تمهّد لاحقاً لإدارة المخاطر وحساب الربح والخسارة والحفاظ على رأس المال، ولا تجعل هذه النماذج ضماناً للربح.',
+    'تنبيه المصدر: أي قواعد دخول أو أهداف أو وقف خسارة مذكورة هنا هي تلخيص لشرح المحاضر داخل المحاضرة وليست توصية مالية شخصية.',
+  ]),
 ];
 
 class HomePage extends StatelessWidget {
@@ -84,4 +108,4 @@ class HomePage extends StatelessWidget {
 }
 
 class LessonPage extends StatelessWidget { final Lesson lesson; final int index; const LessonPage({super.key,required this.lesson,required this.index});
- @override Widget build(BuildContext context)=>Directionality(textDirection:TextDirection.rtl,child:Scaffold(appBar:AppBar(title:Text('المحاضرة ${index+1}')),body:ListView(padding:const EdgeInsets.all(18),children:[Text(lesson.title,style:const TextStyle(fontSize:25,fontWeight:FontWeight.bold)),const SizedBox(height:10),Text(lesson.summary,style:const TextStyle(color:Colors.white70,fontSize:16)),const SizedBox(height:20),...List.generate(lesson.points.length,(i)=>Container(margin:const EdgeInsets.only(bottom:10),padding:const EdgeInsets.all(16),decoration:BoxDecoration(color:const Color(0xFF111827),borderRadius:BorderRadius.circular(16)),child:Row(crossAxisAlignment:CrossAxisAlignment.start,children:[CircleAvatar(radius:12,child:Text('${i+1}',style:const TextStyle(fontSize:11))),const SizedBox(width:10),Expanded(child:Text(lesson.points[i],style:const TextStyle(fontSize:16,height:1.5))) ]))),const SizedBox(height:15),Container(padding:const EdgeInsets.all(16),decoration:BoxDecoration(borderRadius:BorderRadius.circular(16),border:Border.all(color:Colors.white12)),child:const Text('اختبر نفسك: هل تستطيع تحديد الاتجاه أولاً، ثم معرفة هل السعر قريب من دعم أو مقاومة؟',style:TextStyle(fontWeight:FontWeight.bold))) ]))); }
+ @override Widget build(BuildContext context)=>Directionality(textDirection:TextDirection.rtl,child:Scaffold(appBar:AppBar(title:Text('المحاضرة ${index+1}')),body:ListView(padding:const EdgeInsets.all(18),children:[Text(lesson.title,style:const TextStyle(fontSize:25,fontWeight:FontWeight.bold)),const SizedBox(height:10),Text(lesson.summary,style:const TextStyle(color:Colors.white70,fontSize:16)),const SizedBox(height:20),...List.generate(lesson.points.length,(i)=>Card(color:const Color(0xFF101522),margin:const EdgeInsets.only(bottom:10),child:Padding(padding:const EdgeInsets.all(14),child:Row(crossAxisAlignment:CrossAxisAlignment.start,children:[CircleAvatar(radius:12,child:Text('${i+1}',style:const TextStyle(fontSize:11))),const SizedBox(width:10),Expanded(child:Text(lesson.points[i],style:const TextStyle(fontSize:15,height:1.45)))],)))),const SizedBox(height:10),const Text('مراجعة المحاضرة: ارسم النموذج بيدك ثم اختبر فهمك على رسوم تاريخية دون المخاطرة بأموال حقيقية.',textAlign:TextAlign.center,style:TextStyle(color:Colors.white54))]))); }
