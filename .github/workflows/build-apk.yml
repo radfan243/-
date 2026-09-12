@@ -20,6 +20,7 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
+          import re
           p = Path('lib/main.dart')
           s = p.read_text(encoding='utf-8')
           fixes = [
@@ -31,17 +32,12 @@ jobs:
               ("final x=(i%2==0)?24:s.width*.53;", "final x=(i%2==0)?24.0:s.width*.53;"),
               ("Text(lesson.subtitle,style:const TextStyle(color:Colors.white70,fontSize:14,height:1.4))])); }", "Text(lesson.subtitle,style:const TextStyle(color:Colors.white70,fontSize:14,height:1.4))]))); }"),
               ("final xs = [45.0, 85, 125, 165, 205, 245, 285, 325];", "final List<double> xs = [45.0, 85.0, 125.0, 165.0, 205.0, 245.0, 285.0, 325.0];"),
-              ("width=2,color=", "width:2,color:"),
-              ("width=4,color=", "width:4,color:"),
-              ("width=1.5,color=", "width:1.5,color:"),
-              ("width=2,color=", "width:2,color:"),
-              ("color=Colors.redAccent,width=4", "color:Colors.redAccent,width:4"),
-              ("color=Colors.greenAccent,width=4", "color:Colors.greenAccent,width:4"),
-              ("color=Colors.redAccent);", "color:Colors.redAccent);"),
-              ("final x=(i%2==0)?24:s.width*.53;", "final x=(i%2==0)?24.0:s.width*.53;"),
           ]
           for old, new in fixes:
               s = s.replace(old, new)
+          s = re.sub(r'(line\([^\n]*?),color=', r'\1,color:', s)
+          s = re.sub(r'(line\([^\n]*?),width=', r'\1,width:', s)
+          s = s.replace('final x=(i%2==0)?24:s.width*.53;', 'final x=(i%2==0)?24.0:s.width*.53;')
           p.write_text(s, encoding='utf-8')
           PY
       - run: flutter build apk --release
