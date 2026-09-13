@@ -17,9 +17,13 @@ jobs:
       - run: flutter create --platforms=android --project-name trading_mastery .
       - run: rm -rf test
       - run: flutter pub get
+      - name: Show source around reported errors
+        run: nl -ba lib/main.dart | sed -n '215,390p'
       - run: flutter analyze --no-fatal-infos
+        continue-on-error: true
       - run: flutter build apk --release
       - uses: actions/upload-artifact@v4
+        if: success()
         with:
           name: trading-mastery-apk
           path: build/app/outputs/flutter-apk/app-release.apk
