@@ -416,18 +416,101 @@ class WorkflowPage extends StatelessWidget { const WorkflowPage({super.key}); @o
 
 class TradingVisual extends StatelessWidget { final VisualType type; const TradingVisual({super.key, required this.type}); @override Widget build(BuildContext context) => Card(child: CustomPaint(painter: TradingPainter(type), child: const SizedBox.expand())); }
 class TradingPainter extends CustomPainter {
-  final VisualType type; TradingPainter(this.type);
-  @override void paint(Canvas canvas, Size size) { final p = Paint()..strokeWidth = 3..style = PaintingStyle.stroke; final fill = Paint()..style = PaintingStyle.fill; final w = size.width; final h = size.height; canvas.drawRRect(RRect.fromRectAndRadius(Offset.zero & size, const Radius.circular(18)), Paint()..color = const Color(0xFF10151B));
-    if (type == VisualType.candle) { for (int i = 0; i < 8; i++) { final x = 35.0 + i * (w - 70) / 7; final y = h * (.48 + (i.isEven ? .08 : -.05)); final up = i.isEven; p.color = up ? Colors.greenAccent : Colors.redAccent; canvas.drawLine(Offset(x, y - 55), Offset(x, y + 55), p); fill.color = p.color; canvas.drawRect(Rect.fromCenter(center: Offset(x, y), width: 22, height: up ? 70 : 55), fill); } }
-    else if (type == VisualType.trend) { p.color = Colors.greenAccent; final path = Path()..moveTo(25, h * .78)..lineTo(w * .25, h * .58)..lineTo(w * .42, h * .64)..lineTo(w * .62, h * .32)..lineTo(w * .8, h * .42)..lineTo(w - 25, h * .16); canvas.drawPath(path, p); }
-    else if (type == VisualType.levels) { p.color = Colors.amber; canvas.drawLine(20, h * .3, w - 20, h * .3, p); canvas.drawLine(20, h * .7, w - 20, h * .7, p); p.color = Colors.greenAccent; canvas.drawLine(30, h * .8, w * .35, h * .55, p); canvas.drawLine(w * .35, h * .55, w - 30, h * .25, p); }
-    else if (type == VisualType.patterns) { p.color = Colors.redAccent; final path = Path()..moveTo(25, h * .7)..lineTo(w * .25, h * .3)..lineTo(w * .42, h * .65)..lineTo(w * .6, h * .18)..lineTo(w * .78, h * .62)..lineTo(w - 25, h * .35); canvas.drawPath(path, p); canvas.drawLine(w * .25, h * .55, w * .8, h * .55, p); }
-    else if (type == VisualType.triangles) { p.color = Colors.amber; final path = Path()..moveTo(30, h * .7)..lineTo(w * .5, h * .25)..lineTo(w - 30, h * .7)..close(); canvas.drawPath(path, p); p.color = Colors.greenAccent; canvas.drawLine(w * .5, h * .25, w * .8, h * .55, p); }
-    else if (type == VisualType.risk) { p.color = Colors.amber; canvas.drawLine(35, h * .7, w - 35, h * .7, p); p.color = Colors.redAccent; canvas.drawLine(w * .35, h * .7, w * .35, h * .35, p); p.color = Colors.greenAccent; canvas.drawLine(w * .35, h * .35, w * .75, h * .18, p); }
-    else if (type == VisualType.psychology) { p.color = Colors.amber; final path = Path()..moveTo(25, h * .65)..quadraticBezierTo(w * .3, h * .05, w * .55, h * .55)..quadraticBezierTo(w * .78, h * .9, w - 25, h * .3); canvas.drawPath(path, p); }
-    else { p.color = Colors.blueAccent; canvas.drawLine(25, h * .68, w - 25, h * .68, p); p.color = Colors.amber; canvas.drawLine(25, h * .35, w - 25, h * .35, p); p.color = Colors.greenAccent; canvas.drawLine(w * .5, h * .35, w * .5, h * .68, p); }
+  final VisualType type;
+  TradingPainter(this.type);
+
+  void candles(Canvas c, Size s, {int count = 11, double slope = 0}) {
+    final fill = Paint()..style = PaintingStyle.fill;
+    final stroke = Paint()..strokeWidth = 2;
+    for (int i = 0; i < count; i++) {
+      final x = 30.0 + i * (s.width - 60) / (count - 1);
+      final y = s.height * .55 - slope * i;
+      final up = i.isEven;
+      stroke.color = up ? Colors.greenAccent : Colors.redAccent;
+      fill.color = stroke.color;
+      c.drawLine(Offset(x, y - 32), Offset(x, y + 32), stroke);
+      c.drawRect(Rect.fromCenter(center: Offset(x, y), width: 13, height: up ? 42 : 34), fill);
+    }
   }
-  @override bool shouldRepaint(covariant TradingPainter oldDelegate) => oldDelegate.type != type;
+
+  void path(Canvas c, Paint p, List<Offset> points) {
+    final q = Path()..moveTo(points.first.dx, points.first.dy);
+    for (final point in points.skip(1)) {
+      q.lineTo(point.dx, point.dy);
+    }
+    c.drawPath(q, p);
+  }
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final w = size.width;
+    final h = size.height;
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(Offset.zero & size, const Radius.circular(18)),
+      Paint()..color = const Color(0xFF101820),
+    );
+    final grid = Paint()..color = Colors.white.withValues(alpha: .045)..strokeWidth = 1;
+    for (int i = 1; i < 6; i++) {
+      canvas.drawLine(Offset(0, h * i / 6), Offset(w, h * i / 6), grid);
+    }
+    for (int i = 1; i < 8; i++) {
+      canvas.drawLine(Offset(w * i / 8, 0), Offset(w * i / 8, h), grid);
+    }
+
+    final p = Paint()..style = PaintingStyle.stroke..strokeWidth = 3..strokeCap = StrokeCap.round;
+
+    if (type == VisualType.candle) {
+      candles(canvas, size);
+    } else if (type == VisualType.trend) {
+      candles(canvas, size, slope: 2);
+      p.color = Colors.greenAccent;
+      path(canvas, p, [
+        Offset(20, h * .82), Offset(w * .27, h * .62), Offset(w * .45, h * .69),
+        Offset(w * .68, h * .38), Offset(w - 20, h * .18),
+      ]);
+    } else if (type == VisualType.levels) {
+      candles(canvas, size);
+      p.color = Colors.cyanAccent;
+      canvas.drawRRect(RRect.fromRectAndRadius(Rect.fromLTWH(18, h * .27, w - 36, 28), const Radius.circular(8)), p);
+      canvas.drawRRect(RRect.fromRectAndRadius(Rect.fromLTWH(18, h * .69, w - 36, 28), const Radius.circular(8)), p);
+    } else if (type == VisualType.patterns) {
+      p.color = Colors.redAccent;
+      path(canvas, p, [
+        Offset(20, h * .72), Offset(w * .22, h * .32), Offset(w * .40, h * .64),
+        Offset(w * .57, h * .20), Offset(w * .75, h * .62), Offset(w - 20, h * .35),
+      ]);
+      p.color = Colors.amber;
+      canvas.drawLine(Offset(w * .2, h * .54), Offset(w * .8, h * .54), p);
+    } else if (type == VisualType.triangles) {
+      p.color = Colors.amber;
+      path(canvas, p, [Offset(25, h * .75), Offset(w * .5, h * .2), Offset(w - 25, h * .75)]);
+      p.color = Colors.greenAccent;
+      canvas.drawLine(Offset(w * .5, h * .2), Offset(w * .82, h * .55), p);
+    } else if (type == VisualType.risk) {
+      p.color = Colors.amber;
+      canvas.drawLine(Offset(25, h * .70), Offset(w - 25, h * .70), p);
+      p.color = Colors.redAccent;
+      canvas.drawLine(Offset(w * .34, h * .70), Offset(w * .34, h * .35), p);
+      p.color = Colors.greenAccent;
+      canvas.drawLine(Offset(w * .34, h * .35), Offset(w * .75, h * .18), p);
+    } else if (type == VisualType.psychology) {
+      p.color = Colors.amber;
+      path(canvas, p, [
+        Offset(20, h * .65), Offset(w * .22, h * .18), Offset(w * .42, h * .73),
+        Offset(w * .64, h * .35), Offset(w - 20, h * .57),
+      ]);
+    } else {
+      p.color = Colors.blueAccent;
+      canvas.drawLine(Offset(20, h * .68), Offset(w - 20, h * .68), p);
+      p.color = Colors.amber;
+      canvas.drawLine(Offset(20, h * .34), Offset(w - 20, h * .34), p);
+      p.color = Colors.greenAccent;
+      canvas.drawLine(Offset(w * .5, h * .34), Offset(w * .5, h * .68), p);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant TradingPainter oldDelegate) => oldDelegate.type != type;
 }
 
 class SectionTitle extends StatelessWidget { final String title; final IconData icon; const SectionTitle({super.key, required this.title, required this.icon}); @override Widget build(BuildContext context) => Padding(padding: const EdgeInsets.only(bottom: 10), child: Row(children: [Icon(icon, color: Colors.amber), const SizedBox(width: 8), Text(title, style: const TextStyle(fontSize: 19, fontWeight: FontWeight.bold))])); }
