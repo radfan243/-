@@ -8,7 +8,7 @@ class TradingMasteryApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'إحتراف التداول من الصفر الى الاحترف',
+      title: 'إحتراف التداول من الصفر الى الاحتراف',
       theme: ThemeData(
         useMaterial3: true,
         brightness: Brightness.dark,
@@ -90,6 +90,30 @@ const lessons = <Lesson>[
     ['الفريم يحدد المدة التي تمثلها كل شمعة.', 'HTF للصورة العامة والاتجاه والمنطقة، وLTF للتأكيد واختيار الدخول في شرح المحاضرة.', 'أمثلة المصدر: 1D مع 1H، و4H مع 15m، و1H مع 5m.', 'لا تستخدم فريمات كثيرة إذا كانت ستسبب التشويش.', 'يمكن أن تكون حركة LTF عكس HTF مجرد تصحيح حتى ينكسر مستوى بنيوي مهم.', 'التحليل احتمالي وليس ضماناً، ووقف الخسارة هو حد للمخاطرة لا وعد بالنتيجة.'],
     ['افتح HTF', 'حدد الاتجاه والمنطقة', 'انتظر وصول السعر', 'انتقل إلى LTF', 'انتظر التأكيد', 'حدد الإبطال والمخاطرة'],
     [QuizQuestion('ماذا يحدد HTF في منهج المحاضرة؟', ['الصورة العامة والاتجاه والمنطقة', 'السعر المضمون', 'الربح'], 0), QuizQuestion('متى تنتقل إلى LTF؟', ['بعد وصول السعر للمنطقة', 'دائماً قبل HTF', 'عشوائياً'], 0)]),
+  Lesson(13, 'الأعلام والرايات', 'Flag وPennant — نماذج الاستمرارية', VisualType.patterns,
+    ['تأتي غالباً بعد حركة قوية ثم تصحيح أو تجميع قصير.', 'العلم يميل إلى قناة تصحيحية، والراية تضيق نحو نقطة.', 'السياق السابق أهم من شكل النموذج وحده.', 'الكسر والتأكيد لا يضمنان استمرار الحركة.'],
+    ['حدد الحركة القوية', 'حدد منطقة التصحيح', 'انتظر الخروج', 'راجع إعادة الاختبار'],
+    [QuizQuestion('ما الذي يسبق العلم غالباً؟', ['حركة قوية', 'سكون دائم', 'لا شيء'], 0), QuizQuestion('هل الكسر مضمون النجاح؟', ['نعم', 'لا', 'دائماً'], 1)]),
+  Lesson(14, 'الأوتاد', 'Rising Wedge وFalling Wedge', VisualType.patterns,
+    ['الوتد الصاعد يتضيق مع ميل للأعلى، والهابط يتضيق مع ميل للأسفل.', 'قد يعمل الوتد كاستمرار أو انعكاس بحسب السياق.', 'لا تعتمد على الاسم وحده؛ افحص البنية والاتجاه السابق.', 'انتظر الكسر والتأكيد قبل بناء السيناريو.'],
+    ['ارسم الضلعين', 'راقب التضييق', 'حدد اتجاه الكسر', 'انتظر التأكيد'],
+    [QuizQuestion('هل الوتد يعمل دائماً كانعكاس؟', ['نعم', 'لا', 'فقط على BTC'], 1), QuizQuestion('ما الأهم؟', ['السياق والبنية', 'الاسم فقط', 'لون الشمعة فقط'], 0)]),
+  Lesson(15, 'نماذج الشموع', 'Pin Bar وEngulfing وDoji', VisualType.candle,
+    ['Pin Bar قد يعكس رفضاً سعرياً، لكن المكان والسياق مهمان.', 'Engulfing يصف ابتلاع جسم الشمعة السابقة في الشكل الشائع.', 'Doji يعني تقارب الافتتاح والإغلاق ولا يعني شراء أو بيع وحده.', 'الشمعة عند منطقة مهمة تختلف عن شمعة في منتصف نطاق عشوائي.'],
+    ['حدد المنطقة', 'اقرأ الشمعة', 'قارن بالسياق', 'انتظر التأكيد'],
+    [QuizQuestion('هل Doji وحده إشارة دخول؟', ['نعم', 'لا', 'دائماً'], 1), QuizQuestion('ما الذي يقوي قراءة الشمعة؟', ['السياق والمنطقة', 'لون الشاشة', 'عدد الشموع فقط'], 0)]),
+  Lesson(16, 'إدارة المخاطر والبيب واللوت', 'حماية رأس المال وحساب حجم الصفقة', VisualType.risk,
+    ['إدارة المخاطر تهدف إلى منع خسارة كبيرة في صفقة واحدة.', 'المعادلة التعليمية: المبلغ المسموح بخسارته ÷ الخسارة لكل وحدة = حجم نظري.', 'البيب واللوت مصطلحان شائعان في الفوركس وتختلف قيمتهما حسب الأداة والعقد.', 'وقف الخسارة حد للمخاطرة وليس ضماناً لسعر تنفيذ مثالي.'],
+    ['حدد الإبطال', 'حدد مبلغ المخاطرة', 'احسب الحجم', 'راجع الخطة'],
+    [QuizQuestion('ما هدف إدارة المخاطر؟', ['حماية رأس المال', 'ضمان الربح', 'مضاعفة الحجم'], 0), QuizQuestion('هل وقف الخسارة يضمن السعر؟', ['نعم', 'لا', 'دائماً'], 1)]),
+  Lesson(17, 'الانضباط والنفسية', 'الخوف والجشع والتداول الانتقامي', VisualType.psychology,
+    ['لا تجعل صفقة واحدة تحدد تقييمك للاستراتيجية.', 'التداول الانتقامي هو رفع المخاطرة لاستعادة خسارة سابقة.', 'تبديل المنهج بعد سلسلة قصيرة قد يمنع التقييم الهادئ.', 'سجل سبب الدخول والإبطال والنتيجة وراجع سلسلة الصفقات.'],
+    ['اكتب سبب الدخول', 'حدد الإبطال', 'سجل النتيجة', 'راجع السلسلة'],
+    [QuizQuestion('ما التداول الانتقامي؟', ['رفع المخاطرة بعد خسارة', 'تسجيل الصفقة', 'خفض المخاطرة'], 0), QuizQuestion('ماذا تفعل بعد سلسلة قصيرة؟', ['تراجع البيانات', 'تضاعف اللوت', 'تلغي الخطة'], 0)]),
+  Lesson(18, 'الفريمات HTF / LTF', 'الصورة العامة ثم المنطقة ثم التأكيد', VisualType.timeframes,
+    ['HTF يعطي الصورة العامة والاتجاه والمناطق الرئيسية.', 'LTF يستخدم للتأكيد واختيار نقطة أكثر دقة في الشرح التعليمي.', 'أمثلة: 4H مع 15m أو 1H مع 5m.', 'لا تكثر الفريمات إذا سببت تشويشاً أو تعارضاً غير مفهوم.'],
+    ['ابدأ بـ HTF', 'حدد الاتجاه والمنطقة', 'انتظر وصول السعر', 'انتقل إلى LTF للتأكيد'],
+    [QuizQuestion('ماذا يحدد HTF؟', ['الصورة العامة والمنطقة', 'الربح المضمون', 'سعر التنفيذ'], 0), QuizQuestion('متى تنتقل إلى LTF؟', ['بعد وصول السعر للمنطقة', 'قبل HTF دائماً', 'عشوائياً'], 0)]),
 ];
 
 class MainShell extends StatefulWidget {
@@ -156,29 +180,203 @@ class LessonPage extends StatefulWidget {
   @override
   State<LessonPage> createState() => _LessonPageState();
 }
+
 class _LessonPageState extends State<LessonPage> {
   int score = 0;
   int answered = 0;
+
+  bool get isBearish => <int>{5, 7, 11, 14, 17}.contains(widget.lesson.number);
+  bool get isBullish => <int>{6, 10, 13, 15}.contains(widget.lesson.number);
+
   @override
   Widget build(BuildContext context) {
     final l = widget.lesson;
-    final children = <Widget>[Card(child: Padding(padding: const EdgeInsets.all(18), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text('المحاضرة ${l.number}', style: const TextStyle(color: Colors.amber, fontWeight: FontWeight.bold)), const SizedBox(height: 6), Text(l.title, style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w900)), const SizedBox(height: 6), Text(l.subtitle, style: const TextStyle(color: Colors.white70))]))), const SizedBox(height: 14), SizedBox(height: 280, child: TradingVisual(type: l.visual)), const SizedBox(height: 18), const SectionTitle(title: 'الشرح الأساسي', icon: Icons.lightbulb_outline)];
-    for (int i = 0; i < l.points.length; i++) children.add(PointCard(index: i + 1, text: l.points[i]));
-    children.add(const SizedBox(height: 14));
-    children.add(const SectionTitle(title: 'طريقة الدراسة', icon: Icons.route));
-    final steps = <Widget>[];
-    for (int i = 0; i < l.steps.length; i++) steps.add(StepRow(number: i + 1, text: l.steps[i]));
-    children.add(Card(child: Padding(padding: const EdgeInsets.all(15), child: Column(children: steps))));
-    children.add(const SizedBox(height: 14));
-    children.add(const SectionTitle(title: 'اختبر فهمك', icon: Icons.quiz_outlined));
-    for (int i = 0; i < l.quiz.length; i++) children.add(QuizCard(question: l.quiz[i], number: i + 1, onAnswer: (ok) { setState(() { answered++; if (ok) score++; }); }));
-    if (answered > 0) children.add(Padding(padding: const EdgeInsets.only(top: 12), child: Text('نتيجتك: $score / $answered', style: const TextStyle(color: Colors.amber, fontWeight: FontWeight.bold))));
-    children.add(const SizedBox(height: 14));
-    children.add(FilledButton.icon(onPressed: () { widget.onDone(); Navigator.pop(context); }, icon: const Icon(Icons.check_circle), label: const Text('تمت دراسة المحاضرة')));
-    children.add(const SizedBox(height: 12));
-    children.add(const Card(child: Padding(padding: EdgeInsets.all(15), child: Text('تنبيه تعليمي: المحتوى يشرح المفاهيم الواردة في المنهج ولا يقدم توصية شراء أو بيع أو ضماناً للربح.', style: TextStyle(color: Colors.white60, height: 1.5)))));
-    return Scaffold(appBar: AppBar(title: Text('المحاضرة ${l.number}')), body: ListView(padding: const EdgeInsets.fromLTRB(18, 8, 18, 35), children: children);
+    final directionColor = isBearish ? Colors.redAccent : (isBullish ? Colors.greenAccent : Colors.amber);
+    final directionTitle = isBearish ? 'السيناريو الهابط' : (isBullish ? 'السيناريو الصاعد' : 'قراءة النموذج');
+    return Scaffold(
+      appBar: AppBar(title: Text('الدرس ${l.number}')),
+      body: ListView(
+        padding: const EdgeInsets.fromLTRB(12, 8, 12, 34),
+        children: [
+          Container(
+            padding: const EdgeInsets.all(18),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [l.accent.withValues(alpha: .24), const Color(0xFF08131F)]),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(color: l.accent.withValues(alpha: .65)),
+            ),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Row(children: [
+                CircleAvatar(backgroundColor: l.accent.withValues(alpha: .18), child: Text('${l.number}', style: TextStyle(color: l.accent, fontWeight: FontWeight.w900))),
+                const SizedBox(width: 10),
+                Expanded(child: Text(l.title, style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w900))),
+              ]),
+              const SizedBox(height: 6),
+              Text(l.subtitle, style: const TextStyle(color: Colors.white70)),
+              const SizedBox(height: 12),
+              const Text('الفكرة الأساسية: لا تقرأ الكسر وحده؛ اقرأ الاتجاه + المنطقة + التأكيد.', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, height: 1.4)),
+            ]),
+          ),
+          const SizedBox(height: 12),
+          Container(
+            height: 310,
+            decoration: BoxDecoration(
+              color: const Color(0xFF07111C),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(color: l.accent.withValues(alpha: .55)),
+            ),
+            child: Stack(children: [
+              Positioned.fill(child: TradingVisual(type: l.visual)),
+              Positioned(top: 12, right: 12, child: _ChartTag(text: 'الرسم البياني التوضيحي', color: l.accent)),
+              Positioned(bottom: 12, left: 12, right: 12, child: _ChartCaption(text: 'اتبع البنية على الرسم ثم انتقل للنص')),
+            ]),
+          ),
+          const SizedBox(height: 12),
+          LayoutBuilder(builder: (context, box) {
+            final cards = [
+              _DirectionCard(
+                title: directionTitle,
+                color: directionColor,
+                icon: isBearish ? Icons.south_east : (isBullish ? Icons.north_east : Icons.compare_arrows),
+                lines: isBearish
+                    ? const ['راقب كسر الدعم/البنية', 'انتظر التأكيد أو إعادة الاختبار', 'استمرار الهبوط ليس مضموناً']
+                    : isBullish
+                        ? const ['راقب كسر المقاومة/البنية', 'انتظر التأكيد أو إعادة الاختبار', 'استمرار الصعود ليس مضموناً']
+                        : const ['حدد الاتجاه والسياق', 'حدد المنطقة المهمة', 'انتظر التأكيد قبل القرار'],
+              ),
+              _DirectionCard(
+                title: 'قاعدة مهمة جداً',
+                color: Colors.amber,
+                icon: Icons.lightbulb,
+                lines: const ['الشكل وحده لا يكفي', 'الكسر ليس ضماناً', 'إدارة المخاطر جزء من الخطة'],
+              ),
+            ];
+            if (box.maxWidth > 650) {
+              return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Expanded(child: cards[0]),
+                const SizedBox(width: 10),
+                Expanded(child: cards[1]),
+              ]);
+            }
+            return Column(children: [cards[0], const SizedBox(height: 10), cards[1]]);
+          }),
+          const SizedBox(height: 14),
+          const SectionTitle(title: 'ما الذي يحدث؟', icon: Icons.analytics_outlined),
+          for (int i = 0; i < l.points.length; i++)
+            PointCard(index: i + 1, text: l.points[i]),
+          const SizedBox(height: 10),
+          const SectionTitle(title: 'الخطوات على الشارت', icon: Icons.route),
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+              child: Column(children: [
+                for (int i = 0; i < l.steps.length; i++)
+                  StepRow(number: i + 1, text: l.steps[i]),
+              ]),
+            ),
+          ),
+          const SizedBox(height: 12),
+          Card(
+            color: const Color(0xFF111C28),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16), side: const BorderSide(color: Colors.amber)),
+            child: const Padding(
+              padding: EdgeInsets.all(15),
+              child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Icon(Icons.star, color: Colors.amber),
+                SizedBox(width: 9),
+                Expanded(child: Text(
+                  'تذكّر: ليس كل كسر يعني تحوّل الاتجاه. تأكد من السياق وإعادة الاختبار وسلوك السعر وإدارة المخاطر.',
+                  style: TextStyle(color: Colors.white70, height: 1.5),
+                )),
+              ]),
+            ),
+          ),
+          const SizedBox(height: 14),
+          const SectionTitle(title: 'اختبر فهمك', icon: Icons.quiz_outlined),
+          for (int i = 0; i < l.quiz.length; i++)
+            QuizCard(
+              question: l.quiz[i],
+              number: i + 1,
+              onAnswer: (ok) => setState(() { answered++; if (ok) score++; }),
+            ),
+          if (answered > 0)
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Text('نتيجتك: $score / $answered', style: TextStyle(color: l.accent, fontWeight: FontWeight.w900)),
+            ),
+          const SizedBox(height: 14),
+          FilledButton.icon(
+            onPressed: () { widget.onDone(); Navigator.pop(context); },
+            icon: const Icon(Icons.check_circle),
+            label: const Text('تمت دراسة الدرس'),
+          ),
+          const SizedBox(height: 8),
+          const Text(
+            'محتوى تعليمي: الرسوم والنماذج تشرح طريقة القراءة ولا تقدم توصية شراء أو بيع ولا تضمن الربح.',
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.white38, height: 1.45),
+          ),
+        ],
+      ),
+    );
   }
+}
+
+class _ChartTag extends StatelessWidget {
+  final String text;
+  final Color color;
+  const _ChartTag({required this.text, required this.color});
+  @override
+  Widget build(BuildContext context) => Container(
+    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+    decoration: BoxDecoration(
+      color: const Color(0xDD091522),
+      borderRadius: BorderRadius.circular(18),
+      border: Border.all(color: color),
+    ),
+    child: Text(text, style: TextStyle(color: color, fontWeight: FontWeight.bold)),
+  );
+}
+
+class _ChartCaption extends StatelessWidget {
+  final String text;
+  const _ChartCaption({required this.text});
+  @override
+  Widget build(BuildContext context) => Container(
+    padding: const EdgeInsets.all(9),
+    decoration: BoxDecoration(color: const Color(0xDD07111C), borderRadius: BorderRadius.circular(12)),
+    child: Text(text, textAlign: TextAlign.center, style: const TextStyle(color: Colors.white70)),
+  );
+}
+
+class _DirectionCard extends StatelessWidget {
+  final String title;
+  final Color color;
+  final IconData icon;
+  final List<String> lines;
+  const _DirectionCard({required this.title, required this.color, required this.icon, required this.lines});
+  @override
+  Widget build(BuildContext context) => Container(
+    padding: const EdgeInsets.all(14),
+    decoration: BoxDecoration(
+      color: color.withValues(alpha: .075),
+      borderRadius: BorderRadius.circular(17),
+      border: Border.all(color: color.withValues(alpha: .65), width: 1.4),
+    ),
+    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Row(children: [Icon(icon, color: color), const SizedBox(width: 7), Expanded(child: Text(title, style: TextStyle(color: color, fontSize: 18, fontWeight: FontWeight.w900)))]),
+      const SizedBox(height: 8),
+      for (final line in lines)
+        Padding(
+          padding: const EdgeInsets.only(bottom: 5),
+          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Icon(Icons.check_circle, size: 17, color: color),
+            const SizedBox(width: 6),
+            Expanded(child: Text(line, style: const TextStyle(color: Colors.white70))),
+          ]),
+        ),
+    ]),
+  );
 }
 
 class ToolsPage extends StatelessWidget {
