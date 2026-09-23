@@ -10,20 +10,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.35.0'
           channel: stable
-      - run: flutter create --platforms=android --project-name trading_mastery .
-      - run: rm -rf test
-      - run: flutter pub get
-      - name: Show source around reported errors
-        run: nl -ba lib/main.dart | sed -n '215,390p'
-      - run: flutter analyze --no-fatal-infos
-        continue-on-error: true
-      - run: flutter build apk --release
-      - uses: actions/upload-artifact@v4
-        if: success()
+          cache: true
+
+      - name: Prepare Android project
+        run: flutter create --platforms=android --project-name trading_mastery .
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Analyze Dart
+        run: flutter analyze --no-fatal-infos
+
+      - name: Build release APK
+        run: flutter build apk --release
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
         with:
           name: trading-mastery-apk
           path: build/app/outputs/flutter-apk/app-release.apk
+          if-no-files-found: error
