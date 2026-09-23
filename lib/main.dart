@@ -38,6 +38,7 @@ class Lesson {
   final List<String> points;
   final List<String> steps;
   final List<QuizQuestion> quiz;
+  Color get accent => number.isEven ? Colors.greenAccent : Colors.cyanAccent;
   const Lesson(this.number, this.title, this.subtitle, this.visual, this.points, this.steps, this.quiz);
 }
 
@@ -125,9 +126,20 @@ class MainShell extends StatefulWidget {
 class _MainShellState extends State<MainShell> {
   int tab = 0;
   final Set<int> completed = <int>{};
+
   void openLesson(Lesson l) {
-    Navigator.push(context, MaterialPageRoute(builder: (_) => LessonPage(lesson: l, initiallyDone: completed.contains(l.number), onDone: () => setState(() => completed.add(l.number))));
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => LessonPage(
+          lesson: l,
+          initiallyDone: completed.contains(l.number),
+          onDone: () => setState(() => completed.add(l.number)),
+        ),
+      ),
+    );
   }
+
   @override
   Widget build(BuildContext context) {
     final pages = <Widget>[
@@ -136,7 +148,22 @@ class _MainShellState extends State<MainShell> {
       const ToolsPage(),
       const GlossaryPage(),
     ];
-    return Directionality(textDirection: TextDirection.rtl, child: Scaffold(body: SafeArea(child: pages[tab]), bottomNavigationBar: NavigationBar(selectedIndex: tab, onDestinationSelected: (v) => setState(() => tab = v), destinations: const [NavigationDestination(icon: Icon(Icons.home_outlined), selectedIcon: Icon(Icons.home), label: 'الرئيسية'), NavigationDestination(icon: Icon(Icons.menu_book_outlined), selectedIcon: Icon(Icons.menu_book), label: 'المحاضرات'), NavigationDestination(icon: Icon(Icons.tune_outlined), selectedIcon: Icon(Icons.tune), label: 'الأدوات'), NavigationDestination(icon: Icon(Icons.menu_book), label: 'قاموس')])));
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        body: SafeArea(child: pages[tab]),
+        bottomNavigationBar: NavigationBar(
+          selectedIndex: tab,
+          onDestinationSelected: (v) => setState(() => tab = v),
+          destinations: const [
+            NavigationDestination(icon: Icon(Icons.home_outlined), selectedIcon: Icon(Icons.home), label: 'الرئيسية'),
+            NavigationDestination(icon: Icon(Icons.menu_book_outlined), selectedIcon: Icon(Icons.menu_book), label: 'المحاضرات'),
+            NavigationDestination(icon: Icon(Icons.tune_outlined), selectedIcon: Icon(Icons.tune), label: 'الأدوات'),
+            NavigationDestination(icon: Icon(Icons.menu_book), label: 'قاموس'),
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -385,34 +412,254 @@ class ToolsPage extends StatelessWidget {
   Widget build(BuildContext context) => ListView(padding: const EdgeInsets.all(18), children: [const Text('أدوات التعلم', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w900)), const SizedBox(height: 14), ToolTile(icon: Icons.calculate_outlined, title: 'حاسبة المخاطرة', subtitle: 'حساب تعليمي للمبلغ المعرض للخسارة وحجم الوحدة.', page: const RiskCalculatorPage()), ToolTile(icon: Icons.checklist_rtl, title: 'قائمة فحص الصفقة', subtitle: 'تأكد من الاتجاه والمستوى والتأكيد والمخاطرة.', page: const ChecklistPage()), ToolTile(icon: Icons.show_chart, title: 'مختبر الرسوم', subtitle: 'رسومات تعليمية للشموع والاتجاهات والنماذج.', page: const VisualLabPage()), ToolTile(icon: Icons.route, title: 'سير عمل HTF/LTF', subtitle: 'الاتجاه والمنطقة ثم الفريم الأدنى والتأكيد.', page: const WorkflowPage())]);
 }
 
-class RiskCalculatorPage extends StatefulWidget { const RiskCalculatorPage({super.key}); @override State<RiskCalculatorPage> createState() => _RiskCalculatorPageState(); }
+class RiskCalculatorPage extends StatefulWidget {
+  const RiskCalculatorPage({super.key});
+  @override
+  State<RiskCalculatorPage> createState() => _RiskCalculatorPageState();
+}
+
 class _RiskCalculatorPageState extends State<RiskCalculatorPage> {
-  final account = TextEditingController(); final risk = TextEditingController(text: '2'); final entry = TextEditingController(); final stop = TextEditingController();
-  @override void dispose() { account.dispose(); risk.dispose(); entry.dispose(); stop.dispose(); super.dispose(); }
-  @override Widget build(BuildContext context) {
-    final a = double.tryParse(account.text); final r = double.tryParse(risk.text); final e = double.tryParse(entry.text); final s = double.tryParse(stop.text);
-    double? money; double? units;
-    if (a != null && r != null && e != null && s != null && e != s) { money = a * r / 100; units = money / (e - s).abs(); }
-    return Scaffold(appBar: AppBar(title: const Text('حاسبة المخاطرة')), body: ListView(padding: const EdgeInsets.all(18), children: [const Text('حاسبة تعليمية', style: TextStyle(fontSize: 27, fontWeight: FontWeight.w900)), const SizedBox(height: 8), const Text('المعادلة: المبلغ المسموح بخسارته ÷ الخسارة لكل وحدة.', style: TextStyle(color: Colors.white70)), const SizedBox(height: 16), InputBox(label: 'رأس المال', controller: account), InputBox(label: 'نسبة المخاطرة %', controller: risk), InputBox(label: 'سعر الدخول', controller: entry), InputBox(label: 'سعر وقف الخسارة', controller: stop), FilledButton(onPressed: () => setState(() {}), child: const Text('احسب')), if (money != null && units != null) Card(margin: const EdgeInsets.only(top: 16), child: Padding(padding: const EdgeInsets.all(18), child: Column(children: [ResultRow(label: 'الحد النظري للخسارة', value: money.toStringAsFixed(2)), const Divider(), ResultRow(label: 'عدد الوحدات النظري', value: units.toStringAsFixed(4))]))), const SizedBox(height: 12), const Text('قيم pip/lot الفعلية تختلف حسب الأداة والمنصة والعقد.', style: TextStyle(color: Colors.white54))]);
+  final account = TextEditingController();
+  final risk = TextEditingController(text: '2');
+  final entry = TextEditingController();
+  final stop = TextEditingController();
+
+  @override
+  void dispose() {
+    account.dispose();
+    risk.dispose();
+    entry.dispose();
+    stop.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final a = double.tryParse(account.text);
+    final r = double.tryParse(risk.text);
+    final e = double.tryParse(entry.text);
+    final s = double.tryParse(stop.text);
+    final money = (a != null && r != null) ? a * r / 100 : null;
+    final units = (money != null && e != null && s != null && e != s)
+        ? money / (e - s).abs()
+        : null;
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('حاسبة المخاطرة')),
+      body: ListView(
+        padding: const EdgeInsets.all(18),
+        children: [
+          const Text('حاسبة تعليمية', style: TextStyle(fontSize: 27, fontWeight: FontWeight.w900)),
+          const SizedBox(height: 8),
+          const Text('المبلغ المسموح بخسارته ÷ الخسارة لكل وحدة = حجم نظري.', style: TextStyle(color: Colors.white70)),
+          const SizedBox(height: 16),
+          InputBox(label: 'رأس المال', controller: account),
+          InputBox(label: 'نسبة المخاطرة %', controller: risk),
+          InputBox(label: 'سعر الدخول', controller: entry),
+          InputBox(label: 'سعر وقف الخسارة', controller: stop),
+          FilledButton(
+            onPressed: () => setState(() {}),
+            child: const Text('احسب'),
+          ),
+          if (money != null)
+            Card(
+              margin: const EdgeInsets.only(top: 16),
+              child: Padding(
+                padding: const EdgeInsets.all(18),
+                child: Column(
+                  children: [
+                    ResultRow(label: 'الحد النظري للخسارة', value: money.toStringAsFixed(2)),
+                    const Divider(),
+                    ResultRow(label: 'عدد الوحدات النظري', value: units?.toStringAsFixed(4) ?? '—'),
+                  ],
+                ),
+              ),
+            ),
+          const SizedBox(height: 12),
+          const Text('قيم pip/lot الفعلية تختلف حسب الأداة والمنصة والعقد.', style: TextStyle(color: Colors.white54)),
+        ],
+      ),
+    );
   }
 }
 
-class ChecklistPage extends StatefulWidget { const ChecklistPage({super.key}); @override State<ChecklistPage> createState() => _ChecklistPageState(); }
+class ChecklistPage extends StatefulWidget {
+  const ChecklistPage({super.key});
+  @override
+  State<ChecklistPage> createState() => _ChecklistPageState();
+}
+
 class _ChecklistPageState extends State<ChecklistPage> {
-  final items = const ['هل الاتجاه واضح؟', 'هل حددت القمم والقيعان؟', 'هل المنطقة واضحة؟', 'هل يوجد تأكيد؟', 'هل وقف الخسارة منطقي؟', 'هل المخاطرة محددة؟', 'هل الهدف معروف؟', 'هل حالتك النفسية مناسبة؟'];
+  final items = const [
+    'هل الاتجاه واضح؟',
+    'هل حددت القمم والقيعان؟',
+    'هل المنطقة واضحة؟',
+    'هل يوجد تأكيد؟',
+    'هل وقف الخسارة منطقي؟',
+    'هل المخاطرة محددة؟',
+    'هل الهدف معروف؟',
+    'هل حالتك النفسية مناسبة؟',
+  ];
   late List<bool> values;
-  @override void initState() { super.initState(); values = List<bool>.filled(items.length, false); }
-  @override Widget build(BuildContext context) { final children = <Widget>[Text('${values.where((v) => v).length} / ${items.length} مكتملة', style: const TextStyle(fontSize: 21, fontWeight: FontWeight.bold))]; for (int i = 0; i < items.length; i++) children.add(Card(child: CheckboxListTile(value: values[i], onChanged: (v) => setState(() => values[i] = v ?? false), title: Text(items[i]), secondary: Icon(values[i] ? Icons.check_circle : Icons.radio_button_unchecked, color: values[i] ? Colors.greenAccent : Colors.white38)))); children.add(const Card(child: Padding(padding: EdgeInsets.all(15), child: Text('إذا لم تكن الشروط واضحة، فالانتظار أفضل من التخمين. هذه القائمة للتدريب وليست إشارة تداول.', style: TextStyle(color: Colors.white60, height: 1.5))))); return Scaffold(appBar: AppBar(title: const Text('قائمة فحص الصفقة')), body: ListView(padding: const EdgeInsets.all(18), children: children); }
+
+  @override
+  void initState() {
+    super.initState();
+    values = List<bool>.filled(items.length, false);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final done = values.where((v) => v).length;
+    return Scaffold(
+      appBar: AppBar(title: const Text('قائمة فحص الصفقة')),
+      body: ListView(
+        padding: const EdgeInsets.all(18),
+        children: [
+          Text('$done / ${items.length} مكتملة', style: const TextStyle(fontSize: 21, fontWeight: FontWeight.bold)),
+          for (int i = 0; i < items.length; i++)
+            Card(
+              child: CheckboxListTile(
+                value: values[i],
+                onChanged: (v) => setState(() => values[i] = v ?? false),
+                title: Text(items[i]),
+                secondary: Icon(
+                  values[i] ? Icons.check_circle : Icons.radio_button_unchecked,
+                  color: values[i] ? Colors.greenAccent : Colors.white38,
+                ),
+              ),
+            ),
+          const Card(
+            child: Padding(
+              padding: EdgeInsets.all(15),
+              child: Text(
+                'إذا لم تكن الشروط واضحة، فالانتظار أفضل من التخمين. هذه القائمة للتدريب وليست إشارة تداول.',
+                style: TextStyle(color: Colors.white60, height: 1.5),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 class GlossaryPage extends StatelessWidget {
   const GlossaryPage({super.key});
-  static const items = <String, String>{'OHLC': 'Open / High / Low / Close: بيانات الشمعة الأساسية.', 'HH + HL': 'Higher High + Higher Low: الاتجاه الصاعد.', 'LH + LL': 'Lower High + Lower Low: الاتجاه الهابط.', 'Support': 'منطقة تفاعل حول قيعان متقاربة.', 'Resistance': 'منطقة تفاعل حول قمم متقاربة.', 'Retest': 'عودة السعر لاختبار مستوى بعد كسره.', 'Stop Loss': 'حد خسارة أو إبطال محدد مسبقاً.', 'Pip': 'وحدة شائعة لحركة السعر في الفوركس.', 'Lot': 'حجم عقد في الفوركس.', 'HTF': 'الفريم الأعلى للصورة العامة والاتجاه.', 'LTF': 'الفريم الأدنى للتأكيد واختيار الدخول.'};
-  @override Widget build(BuildContext context) { final children = <Widget>[const Text('قاموس التداول', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w900)), const SizedBox(height: 14)]; items.forEach((k, v) { children.add(Card(child: Padding(padding: const EdgeInsets.all(15), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text(k, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.amber)), const SizedBox(height: 5), Text(v, style: const TextStyle(color: Colors.white70))])))); }); return ListView(padding: const EdgeInsets.all(18), children: children); }
+  static const items = <String, String>{
+    'OHLC': 'Open / High / Low / Close: بيانات الشمعة الأساسية.',
+    'HH + HL': 'Higher High + Higher Low: الاتجاه الصاعد.',
+    'LH + LL': 'Lower High + Lower Low: الاتجاه الهابط.',
+    'Support': 'منطقة تفاعل حول القيعان.',
+    'Resistance': 'منطقة تفاعل حول القمم.',
+    'Breakout': 'كسر مستوى أو منطقة.',
+    'Retest': 'عودة السعر لاختبار المستوى بعد الكسر.',
+    'Stop Loss': 'حد إبطال أو خسارة محدد مسبقاً.',
+    'Pip': 'وحدة شائعة لحركة السعر في الفوركس.',
+    'Lot': 'حجم عقد في الفوركس.',
+    'HTF': 'الفريم الأعلى للصورة العامة.',
+    'LTF': 'الفريم الأدنى للتأكيد.',
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      padding: const EdgeInsets.all(18),
+      children: [
+        const Text('قاموس التداول', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w900)),
+        const SizedBox(height: 14),
+        for (final e in items.entries)
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(e.key, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.amber)),
+                  const SizedBox(height: 5),
+                  Text(e.value, style: const TextStyle(color: Colors.white70, height: 1.45)),
+                ],
+              ),
+            ),
+          ),
+      ],
+    );
+  }
 }
 
-class VisualLabPage extends StatelessWidget { const VisualLabPage({super.key}); @override Widget build(BuildContext context) => Scaffold(appBar: AppBar(title: const Text('مختبر الرسوم')), body: ListView(padding: const EdgeInsets.all(16), children: [const SizedBox(height: 280, child: TradingVisual(type: VisualType.candle)), const SizedBox(height: 12), const SizedBox(height: 280, child: TradingVisual(type: VisualType.trend)), const SizedBox(height: 12), const SizedBox(height: 280, child: TradingVisual(type: VisualType.patterns))]); }
-class WorkflowPage extends StatelessWidget { const WorkflowPage({super.key}); @override Widget build(BuildContext context) => Scaffold(appBar: AppBar(title: const Text('سير عمل تحليل الشارت')), body: ListView(padding: const EdgeInsets.all(18), children: [const SizedBox(height: 280, child: TradingVisual(type: VisualType.timeframes)), const SizedBox(height: 16), const Text('الترتيب التعليمي', style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold)), const SizedBox(height: 10), const Text('1) حدد الفريم والصورة العامة.\n2) حدد الاتجاه.\n3) حدد القمم والقيعان والمناطق.\n4) ابحث عن نموذج واضح إن وجد.\n5) انتظر التأكيد المناسب.\n6) حدد نقطة الإبطال ووقف الخسارة.\n7) احسب المخاطرة وحجم الصفقة.\n8) سجل الصفقة وراجعها.', style: TextStyle(color: Colors.white70, height: 1.7))]); }
+class VisualLabPage extends StatelessWidget {
+  const VisualLabPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('مختبر جميع النماذج')),
+      body: ListView(
+        padding: const EdgeInsets.fromLTRB(14, 10, 14, 30),
+        children: [
+          const Text('جميع الرسوم التعليمية', style: TextStyle(fontSize: 27, fontWeight: FontWeight.w900)),
+          const SizedBox(height: 5),
+          const Text('كل نموذج مرتبط بالدرس الخاص به مع الرسم والنص المختصر.', style: TextStyle(color: Colors.white60)),
+          const SizedBox(height: 14),
+          for (final l in lessons)
+            Card(
+              margin: const EdgeInsets.only(bottom: 12),
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        CircleAvatar(radius: 15, child: Text('${l.number}')),
+                        const SizedBox(width: 8),
+                        Expanded(child: Text(l.title, style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold))),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    SizedBox(height: 245, child: TradingVisual(type: l.visual)),
+                    const SizedBox(height: 7),
+                    Text(l.subtitle, style: const TextStyle(color: Colors.white60)),
+                  ],
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class WorkflowPage extends StatelessWidget {
+  const WorkflowPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('سير عمل تحليل الشارت')),
+      body: ListView(
+        padding: const EdgeInsets.all(18),
+        children: [
+          const SizedBox(height: 280, child: TradingVisual(type: VisualType.timeframes)),
+          const SizedBox(height: 16),
+          const Text('الترتيب التعليمي', style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 10),
+          const Text(
+            '1) حدد الفريم والصورة العامة.\n'
+            '2) حدد الاتجاه الصاعد أو الهابط أو العرضي.\n'
+            '3) حدد الدعم والمقاومة والمناطق المهمة.\n'
+            '4) ابحث عن نموذج واضح إن وجد.\n'
+            '5) انتظر الكسر والتأكيد أو إعادة الاختبار.\n'
+            '6) حدد نقطة الإبطال ووقف الخسارة.\n'
+            '7) احسب المخاطرة وحجم الصفقة.\n'
+            '8) سجل الصفقة وراجعها قبل تكرار الخطة.',
+            style: TextStyle(color: Colors.white70, height: 1.7),
+          ),
+        ],
+      ),
+    );
+  }
+}
 
 class TradingVisual extends StatelessWidget { final VisualType type; const TradingVisual({super.key, required this.type}); @override Widget build(BuildContext context) => Card(child: CustomPaint(painter: TradingPainter(type), child: const SizedBox.expand())); }
 class TradingPainter extends CustomPainter {
