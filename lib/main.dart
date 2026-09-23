@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'pattern_library.dart';
 
 void main() => runApp(const TradingMasteryApp());
 
@@ -409,7 +410,54 @@ class _DirectionCard extends StatelessWidget {
 class ToolsPage extends StatelessWidget {
   const ToolsPage({super.key});
   @override
-  Widget build(BuildContext context) => ListView(padding: const EdgeInsets.all(18), children: [const Text('أدوات التعلم', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w900)), const SizedBox(height: 14), ToolTile(icon: Icons.calculate_outlined, title: 'حاسبة المخاطرة', subtitle: 'حساب تعليمي للمبلغ المعرض للخسارة وحجم الوحدة.', page: const RiskCalculatorPage()), ToolTile(icon: Icons.checklist_rtl, title: 'قائمة فحص الصفقة', subtitle: 'تأكد من الاتجاه والمستوى والتأكيد والمخاطرة.', page: const ChecklistPage()), ToolTile(icon: Icons.show_chart, title: 'مختبر الرسوم', subtitle: 'رسومات تعليمية للشموع والاتجاهات والنماذج.', page: const VisualLabPage()), ToolTile(icon: Icons.route, title: 'سير عمل HTF/LTF', subtitle: 'الاتجاه والمنطقة ثم الفريم الأدنى والتأكيد.', page: const WorkflowPage())]);
+  Widget build(BuildContext context) => ListView(
+    padding: const EdgeInsets.all(18),
+    children: [
+      const Text('أدوات التعلم', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w900)),
+      const SizedBox(height: 14),
+      Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [Color(0xFF10263A), Color(0xFF101A24)],
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+          ),
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: Colors.cyanAccent.withValues(alpha: .65)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Row(children: [
+              Icon(Icons.auto_graph, color: Colors.cyanAccent, size: 28),
+              SizedBox(width: 9),
+              Expanded(child: Text('مكتبة جميع النماذج', style: TextStyle(fontSize: 21, fontWeight: FontWeight.w900))),
+            ]),
+            const SizedBox(height: 7),
+            const Text(
+              'النماذج الانعكاسية والاستمرارية والمثلثات والشموع، مع الرسم والاتجاه والشرح وشروط التأكيد.',
+              style: TextStyle(color: Colors.white70, height: 1.5),
+            ),
+            const SizedBox(height: 13),
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton.icon(
+                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const PatternLibraryPage())),
+                icon: const Icon(Icons.grid_view_rounded),
+                label: const Text('فتح جميع النماذج'),
+              ),
+            ),
+          ],
+        ),
+      ),
+      const SizedBox(height: 12),
+      ToolTile(icon: Icons.calculate_outlined, title: 'حاسبة المخاطرة', subtitle: 'حساب تعليمي للمبلغ المعرض للخسارة وحجم الوحدة.', page: const RiskCalculatorPage()),
+      ToolTile(icon: Icons.checklist_rtl, title: 'قائمة فحص الصفقة', subtitle: 'تأكد من الاتجاه والمستوى والتأكيد والمخاطرة.', page: const ChecklistPage()),
+      ToolTile(icon: Icons.show_chart, title: 'مختبر الرسوم', subtitle: 'رسومات تعليمية للشموع والاتجاهات والنماذج.', page: const VisualLabPage()),
+      ToolTile(icon: Icons.route, title: 'سير عمل HTF/LTF', subtitle: 'الاتجاه والمنطقة ثم الفريم الأدنى والتأكيد.', page: const WorkflowPage()),
+    ],
+  );
 }
 
 class RiskCalculatorPage extends StatefulWidget {
