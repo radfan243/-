@@ -20,6 +20,9 @@ jobs:
       - name: Prepare Android project
         run: flutter create --platforms=android --project-name trading_mastery .
 
+      - name: Remove generated test scaffold
+        run: rm -rf test
+
       - name: Install dependencies
         run: flutter pub get
 
